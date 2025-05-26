@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo Financeiro</title>
+    <link href="estilo.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="container">
+        <h1>Cálculo Financeiro</h1>
+        <div id="formulario">
+            <form action="#" method="get">
+                <label for="rendimento">Informe seu rendimento líquido:</label>
+                <input type="number" id="rendimento" placeholder="000,00" step="0.01">
+                <button type="button" onclick="calcularRendimento()">Calcular</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="resultadoFinanceiro">
+        <h2>Separação de Rendimentos</h2>
+        <div class="containerDespesas">
+            <div id="despesasFixa">
+                <h3>Despesas Fixas (50%)</h3>
+                <p id="resultadoDespesasFixas">R$ 0,00</p>
+            </div>
+            <div id="despesasVariaveis">
+                <h3>Despesas Variáveis (30%)</h3>
+                <p id="resultadoDespesasVariaveis">R$ 0,00</p>
+            </div>
+        </div>
+        <div id="investimento">
+            <h3>Investimento (20%)</h3>
+            <p id="resultadoInvestimento">R$ 0,00</p>
+        </div>
+    </div>
+
+    <script>
+        function calcularRendimento() {
+            let rendimento = parseFloat(document.getElementById("rendimento").value.replace(",", "."));
+
+            if (isNaN(rendimento) || rendimento <= 0) {
+                alert("Por favor, insira um valor válido e positivo.");
+                return;
+            }
+
+            // Cálculo de porcentagens
+            const despesasFixas = rendimento * 0.5;
+            const despesasVariaveis = rendimento * 0.3;
+            const investimento = rendimento * 0.2;
+
+            // Exibe os valores formatados
+            document.getElementById("resultadoDespesasFixas").innerText = `R$ ${despesasFixas.toFixed(2).replace(".", ",")}`;
+            document.getElementById("resultadoDespesasVariaveis").innerText = `R$ ${despesasVariaveis.toFixed(2).replace(".", ",")}`;
+            document.getElementById("resultadoInvestimento").innerText = `R$ ${investimento.toFixed(2).replace(".", ",")}`;
+        }
+    </script>
+
+</body>
+
+</html>
